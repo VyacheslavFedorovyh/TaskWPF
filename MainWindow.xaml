@@ -1,0 +1,44 @@
+﻿<Window x:Class="TaskWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskWPF"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Объем продаж" Height="460" Width="1100">
+
+    <Window.Resources>
+        <local:ToColorConverter x:Key="ToColorConverter"/>
+        <Style x:Key="Style" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="{Binding ., Converter={StaticResource ToColorConverter}}" />
+        </Style>
+    </Window.Resources>    
+    <Grid>
+        <Button Content="Поиск" Margin="287,4,0,0" Click="Button_Click" HorizontalAlignment="Left" Width="107" Height="23" VerticalAlignment="Top"/>
+        <Button Content="Экспорт Excel" Margin="0,4,9.6,0" Click="ExcelExportButton_Click" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Margin="10,33,9.6,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding = "{Binding Brand}" Header = "Модель" Width="70"/>
+                <DataGridTextColumn Binding = "{Binding January}" Header = "Январь" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding February}" Header = "Февраль" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding March}" Header = "Март" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding April}" Header = "Апрель" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding May}" Header = "Май" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding June}" Header = "Июнь" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding July}" Header = "Июль" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding August}" Header = "Август" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding September}" Header = "Сентябрь" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding October}" Header = "Октябрь" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding November}"  Header = "Ноябрь" Width="85" CellStyle="{StaticResource Style}"/>
+                <DataGridTextColumn Binding = "{Binding December}" Header = "Декабрь" Width="85" CellStyle="{StaticResource Style}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ComboBox x:Name="YearComboBox" SelectionChanged="myComboBox_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="Months" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="60"/>
+        <ComboBox x:Name="BrandComboBox" SelectionChanged="myComboBox_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="Brand" HorizontalAlignment="Left" Margin="104,6,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Label Content="Год" HorizontalAlignment="Left" Margin="70,4,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Content="Модель" HorizontalAlignment="Left" Margin="229,4,0,0" VerticalAlignment="Top" Height="26"/>
+    </Grid>
+</Window>
